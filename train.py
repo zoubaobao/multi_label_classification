@@ -17,7 +17,9 @@ label2idx_path = root_path+"label2idx.json"
 save_model_path = root_path+"multi_label_cls.pth"
 label2idx = load_json(label2idx_path)
 class_num = len(label2idx)
-bert_path = ""
+
+global bert_path
+bert_path=""
 
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
