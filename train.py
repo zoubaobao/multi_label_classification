@@ -11,14 +11,15 @@ from bert_multilabel_cls import BertMultiLabelCls
 from data_helper import MultiClsDataSet
 from sklearn.metrics import accuracy_score
 
-
-train_path = "./data/train.json"
-dev_path = "./data/dev.json"
-test_path = "./data/test.json"
-label2idx_path = "./data/label2idx.json"
-save_model_path = "./model/multi_label_cls.pth"
+root_path = ""
+train_path = root_path+"train.json"
+dev_path = root_path+"dev.json"
+test_path = root_path+"test.json"
+label2idx_path = root_path+"label2idx.json"
+save_model_path = root_path+"multi_label_cls.pth"
 label2idx = load_json(label2idx_path)
 class_num = len(label2idx)
+bert_path = ""
 device = "cuda" if torch.cuda.is_available() else "cpu"
 lr = 2e-5
 batch_size = 128
@@ -42,7 +43,7 @@ def get_acc_score(y_true_tensor, y_pred_tensor):
 
 
 def train():
-    model = BertMultiLabelCls(hidden_size=hidden_size, class_num=class_num)
+    model = BertMultiLabelCls(hidden_size=hidden_size, class_num=class_num,bert_path=bert_path)
     model.train()
     model.to(device)
 
