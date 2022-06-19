@@ -103,9 +103,9 @@ def dev(model, dataloader, criterion):
 
 
 def test(model_path, test_data_path):
-    test_dataset = MultiClsDataSet(test_data_path, max_len=max_len, label2idx_path=label2idx_path)
+    test_dataset = MultiClsDataSet(test_data_path,bert_path=bert_path, max_len=max_len, label2idx_path=label2idx_path)
     test_dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
-    model = BertMultiLabelCls(hidden_size=hidden_size, class_num=class_num)
+    model = BertMultiLabelCls(hidden_size=hidden_size, class_num=class_num,bert_path=bert_path)
     model.load_state_dict(torch.load(model_path))
     model.to(device)
     model.eval()
