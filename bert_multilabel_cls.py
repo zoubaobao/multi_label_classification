@@ -17,7 +17,8 @@ class BertMultiLabelCls(nn.Module):
     def forward(self, input_ids, attention_mask, token_type_ids):
         outputs = self.bert(input_ids, attention_mask, token_type_ids)
         cls = self.drop(outputs[1])
-        out = F.sigmoid(self.fc(cls))
+        out = torch.sigmoid(self.fc(cls))
+        #out = F.sigmoid(self.fc(cls))
         return out
 
 
