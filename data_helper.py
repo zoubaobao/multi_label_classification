@@ -7,10 +7,10 @@ from data_preprocess import load_json
 
 
 class MultiClsDataSet(Dataset):
-    def __init__(self, data_path, max_len=128, label2idx_path="./data/label2idx.json"):
+    def __init__(self, data_path, bert_path, label2idx_path,max_len=128):
         self.label2idx = load_json(label2idx_path)
         self.class_num = len(self.label2idx)
-        self.tokenizer = BertTokenizer.from_pretrained("bert-base-chinese")
+        self.tokenizer = BertTokenizer.from_pretrained(bert_path)
         self.max_len = max_len
         self.input_ids, self.token_type_ids, self.attention_mask, self.labels = self.encoder(data_path)
 
