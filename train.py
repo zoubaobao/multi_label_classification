@@ -20,7 +20,11 @@ save_model_path = root_path+"multi_label_cls.pth"
 label2idx = load_json(label2idx_path)
 class_num = len(label2idx)
 bert_path = ""
+
+
 device = "cuda" if torch.cuda.is_available() else "cpu"
+
+
 lr = 2e-5
 batch_size = 128
 max_len = 128
@@ -28,8 +32,8 @@ hidden_size = 768
 epochs = 10
 
 
-train_dataset = MultiClsDataSet(train_path, max_len=max_len, label2idx_path=label2idx_path)
-dev_dataset = MultiClsDataSet(dev_path, max_len=max_len, label2idx_path=label2idx_path)
+train_dataset = MultiClsDataSet(train_path,bert_path=bert_path, max_len=max_len, label2idx_path=label2idx_path)
+dev_dataset = MultiClsDataSet(dev_path, bert_path=bert_path, max_len=max_len, label2idx_path=label2idx_path)
 
 
 train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
